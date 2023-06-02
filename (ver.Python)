@@ -1,0 +1,72 @@
+# Python 언어 버전
+
+# 패키지 로드
+import pandas as pd
+plt.rcParams["font.family"] = "NanumGothic"
+import matplotlib.pyplot as plt
+
+# 2019년 데이터가 있는 엑셀 로드
+cash2019 = pd.read_csv('C:/Study/Data/직종별 임금(2019).csv', encoding='euc-kr')
+cash2019
+
+# 2019년도 막대그래프 작성
+import seaborn as sns
+plt.figure(figsize=(30, 13))
+colors = sns.color_palette('hls',len(cash2019)) # color 설정
+cs2019 = plt.bar(cash2019['직종별'], cash2019['2019년'], color=colors) # 막대그래프
+for rect in cs2019:
+    height = rect.get_height()
+    plt.text(rect.get_x() + rect.get_width()/2.0, height, '%.2f' % height, ha='center',va='bottom', size = 20)
+plt.xticks(fontsize=13)
+plt.title('직종별 임금(2019년)', fontsize=25) # title
+plt.xlabel('2019년',fontsize=25) # x축 제목
+plt.ylabel('단위 : 천원', fontsize=25) # y축 제목
+job_list = cash2019
+plt.legend(handles=cs2019,labels=list(job_list['직종별']), loc='upper left', bbox_to_anchor=(1, 1), fontsize=25) ## 범례
+cs2019
+
+# 2020년, 2021년 데이터가 있는 엑셀 로드
+import pandas as pd
+import matplotlib.pyplot as plt
+cash202021 = pd.read_csv('C:/Study/Data/직종별 임금(2020~2021).csv', encoding='euc-kr') # 메인 데이터 불러오기
+cash202021
+
+# 2020년 데이터 추출
+cash2020 = cash202021.iloc[:9, :2] 
+cash2020
+
+# 2020년도 막대그래프 작성
+import seaborn as sns
+plt.figure(figsize=(30, 13))
+colors = sns.color_palette('hls',len(cash2020)) # color 설정
+cs2020 = plt.bar(cash2020['직종별'], cash2020['2020년'], color=colors) # 막대그래프
+for rect in cs2020:
+    height = rect.get_height()
+    plt.text(rect.get_x() + rect.get_width()/2.0, height, '%.2f' % height, ha='center',va='bottom', size = 20)
+plt.xticks(fontsize=13)
+plt.title('직종별 임금(2020년)', fontsize=25) # title
+plt.xlabel('2020년',fontsize=25) # x축 제목
+plt.ylabel('단위 : 천원', fontsize=25) # y축 제목
+job_list = cash2020
+plt.legend(handles=cs2019,labels=list(job_list['직종별']), loc='upper left', bbox_to_anchor=(1, 1), fontsize=25) ## 범례
+cs2020
+
+#2021년도 데이터 추출
+cash2021 = cash202021.loc[:9, ['직종별', '2021년']]
+cash2021
+
+# 2021년도 막대그래프 작성
+import seaborn as sns
+plt.figure(figsize=(30, 13))
+colors = sns.color_palette('hls',len(cash2021)) # color 설정
+cs2021 = plt.bar(cash2021['직종별'], cash2021['2021년'], color=colors) # 막대그래프
+for rect in cs2021:
+    height = rect.get_height()
+    plt.text(rect.get_x() + rect.get_width()/2.0, height, '%.2f' % height, ha='center',va='bottom', size = 20)
+plt.xticks(fontsize=13)
+plt.title('직종별 임금(2021년)', fontsize=25) # title
+plt.xlabel('2021년',fontsize=25) # x축 제목
+plt.ylabel('단위 : 천원', fontsize=25) # y축 제목
+job_list = cash2021
+plt.legend(handles=cs2021,labels=list(job_list['직종별']), loc='upper left', bbox_to_anchor=(1, 1), fontsize=25) ## 범례
+cs2021
