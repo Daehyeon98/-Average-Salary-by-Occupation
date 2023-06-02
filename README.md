@@ -1,1 +1,0 @@
-# -Average-Salary-by-Occupation
